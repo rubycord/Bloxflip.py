@@ -4,22 +4,22 @@ import time
 
 auth = ""
 if not Authorization.validate(auth):
-	print("Inavlid authorization")
+	print("Invalid authorization")
 	exit()
 
 old = None
 
 while True:
-	affiliate = Currency.Affiliate(auth)
-	balance = Currency.Balance(auth)
+	affiliate = Currency.affiliate(auth)
+	balance = Currency.balance(auth)
 	if not affiliate == old:
 		print(f"R$ {affiliate} available to claim.")
 		print(f"R$ {balance} Robux in your balance")
 		if affiliate >= 100:
 			print("Claiming affiliate")
-			Currency.ClaimAffiliate(auth, round(affiliate, 2))
+			Currency.claimAffiliate(auth, round(affiliate, 2))
 			print("Withdrawing robux")
-			Currency.Withdraw(auth, round(affiliate, 2))
+			Currency.withdraw(auth, round(affiliate, 2))
 		else:
 			print("Not enough affiliate to claim")
-		old = Currency.Affiliate(auth)
+		old = Currency.affiliate(auth)
